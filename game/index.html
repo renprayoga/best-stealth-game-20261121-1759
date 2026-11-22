@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:,">
+<title>Neon Shadow — The Umbra Heist</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="stage">
+  <header id="hud">
+    <div class="hud-left">
+      <span id="hud-level" class="hud-title">Level 1 — The Gallery</span>
+      <span id="hud-objective" class="hud-sub">Reach the EXIT unseen</span>
+    </div>
+    <div class="hud-mid">
+      <span id="detect-label" class="detect-label">UNSEEN</span>
+      <div id="detect-bar"><div id="detect-fill"></div></div>
+    </div>
+    <div class="hud-right">
+      <span id="hud-intel" class="hud-chip">◆ 0/3</span>
+      <span id="hud-time" class="hud-chip">00:00</span>
+      <span id="hud-score" class="hud-chip">Score 0</span>
+      <button id="btn-mute" class="hud-btn" type="button">🔊 Sound</button>
+    </div>
+  </header>
+  <div id="alarm-banner" class="hidden">⚠ ALARM — HIDE OR RUN ⚠</div>
+  <div id="canvas-wrap">
+    <canvas id="game-canvas"></canvas>
+
+    <div id="overlay-menu" class="overlay">
+      <div class="panel">
+        <h1>NEON <span class="cyan">SHADOW</span></h1>
+        <p class="tagline">The Umbra Heist — a top-down stealth game</p>
+        <p class="story">Three floors. One vault. Every guard watches a cone of light,
+          every crate is cover, every shadow is a friend. Slip past the patrols,
+          grab the intel, and reach the glowing EXIT without ever being seen.</p>
+        <div class="controls">
+          <div><b>WASD / arrows</b> — move</div>
+          <div><b>Shift</b> — sprint (loud!)</div>
+          <div><b>Click</b> — walk there</div>
+          <div><b>P</b> pause &nbsp;·&nbsp; <b>M</b> mute &nbsp;·&nbsp; <b>R</b> restart</div>
+        </div>
+        <p class="hint">Hide in bushes and shadows — a guard only spots you up close there.
+          Cameras sweep fixed cones and raise the same alarm.</p>
+        <button id="btn-start" class="big-btn" type="button">▶ Start the heist</button>
+        <div class="level-pick">
+          <button data-level="0" type="button">1 · The Gallery</button>
+          <button data-level="1" type="button">2 · The Vault Floor</button>
+          <button data-level="2" type="button">3 · The Neon Rooftop</button>
+        </div>
+        <p id="menu-best" class="best"></p>
+      </div>
+    </div>
+
+    <div id="overlay-pause" class="overlay hidden">
+      <div class="panel">
+        <h2>Paused</h2>
+        <p class="story">The guards keep patrolling. Take a breath.</p>
+        <button id="btn-resume" class="big-btn" type="button">Resume</button>
+        <button id="btn-restart" class="big-btn ghost" type="button">Restart level</button>
+        <button id="btn-menu" class="big-btn ghost" type="button">Main menu</button>
+      </div>
+    </div>
+
+    <div id="overlay-complete" class="overlay hidden">
+      <div class="panel">
+        <h2 id="complete-title">Level Clear!</h2>
+        <p id="complete-stars" class="stars">★★★</p>
+        <p id="complete-stats" class="story"></p>
+        <button id="btn-next" class="big-btn" type="button">Next level →</button>
+      </div>
+    </div>
+
+    <div id="overlay-over" class="overlay hidden">
+      <div class="panel">
+        <h2 class="danger">CAUGHT!</h2>
+        <p class="story">The guards dragged you out of the dark.</p>
+        <p id="over-stats" class="story"></p>
+        <button id="btn-retry" class="big-btn" type="button">Try again</button>
+      </div>
+    </div>
+
+    <div id="overlay-victory" class="overlay hidden">
+      <div class="panel">
+        <h2 class="gold">THE VAULT IS YOURS</h2>
+        <p class="story">All three floors cleared. The Umbra Heist is legend now.</p>
+        <p id="victory-score" class="story"></p>
+        <button id="btn-again" class="big-btn" type="button">Play again</button>
+        <button id="btn-victory-menu" class="big-btn ghost" type="button">Main menu</button>
+      </div>
+    </div>
+  </div>
+  <footer id="foot">WASD / arrows move · Shift sprint (loud) · Click to walk · P pause · M mute · R restart — Neon Shadow, an original game. No network requests; all art and sound are generated in code.</footer>
+</div>
+<script type="module" src="src/main.js"></script>
+</body>
+</html>
