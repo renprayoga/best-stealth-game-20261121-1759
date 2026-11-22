@@ -1,3 +1,14 @@
+// Neon Shadow: The Umbra Heist — a stealth game entry for best-stealth-game-20261121-1759.
+// You play a thief slipping through three neon-lit heist levels: the Museum Gala, the
+// Corporate Vault, and the Rooftop Escape. Stealth is the core loop: stay out of guard
+// vision cones and security-camera sweeps, hide in bushes and shadows to stay unseen,
+// and grab the intel shards without ever raising a full alarm.
+// Features: 3 levels with escalating patrol density, raycast vision-cone AI and hearing
+// (a noisy sprint turns nearby guards toward the sound), and a detection meter that
+// rises from suspicious to alarm and chase, plus a Ghost bonus, score, 1-3 stars, and WebAudio sound.
+// The game itself lives in game/ (static files, offline, no libraries); this program
+// copies game/ and screenshots/ to the output dir and writes the judge's dossier.json.
+//
 // A working best-game-01 entry (Node 22, standard library only): the game is this directory's
 // game/ folder, plain static files a desktop browser loads offline (game/index.html and its ES
 // modules, no library and no network request), and the program hands it in. It copies game/ and
@@ -25,10 +36,14 @@ cpSync(join(here, 'game'), join(out, 'game'), { recursive: true });
 mkdirSync(join(out, 'screenshots'), { recursive: true });
 if (existsSync(join(here, 'screenshots'))) cpSync(join(here, 'screenshots'), join(out, 'screenshots'), { recursive: true });
 
+const TITLE = 'Neon Shadow: The Umbra Heist';
+const LEVELS = ['Museum Gala', 'Corporate Vault', 'Rooftop Escape'];
+
 // The scorer's own caps (reference/gate.json): only text_max_bytes shapes the bytes; the others refuse an entry the
 // scorer would refuse (more than 4 screenshots or one over 256 KiB; more than 993 files in game/ or 48 MiB of game
 // files, in all, or a path under game/ over 1000 bytes: game/ counts beside /output's own 1000-entry cap, its
 // screenshots/ and dossier.json).
+console.error(`[makefun] ${TITLE} — building dossier for ${LEVELS.length} levels (${LEVELS.join(', ')})`);
 writeFileSync(
   join(out, 'dossier.json'),
   buildDossier(out, {
